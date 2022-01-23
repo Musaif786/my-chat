@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+//toast
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+//react-dom-router
+import {BrowserRouter,Routes,Route,Link} from "react-router-dom";
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+  <BrowserRouter>
+  <ToastContainer position='top-center'/>
+   <na className="container">
+     <Link className="mx-3 text-dark" to="/">Home</Link>
+     <Link to="/about">About</Link>
+   </na>
+    <Routes>
+    <Route path="/" element={<Home/>}/>
+    <Route path="/about" element={<About/>}/>
+    </Routes>
+  </BrowserRouter>
+   
+  </>
   );
 }
 
