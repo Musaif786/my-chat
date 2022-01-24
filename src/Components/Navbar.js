@@ -28,7 +28,7 @@ function Navbar() {
       <nav className="container">
       <div>
         
-     <Link className="mx-3 text-dark" to="/">Home</Link>
+     <Link className="mx-3 fs-3 text-dark" to="/">Musaif</Link>
       </div>
  <ul>
 
