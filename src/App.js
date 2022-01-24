@@ -74,7 +74,7 @@ function App() {
     <Route path="/profile" element={<Profile/>}/>
     </>
 )}
-    <Route path="*" element={<Login/>}/> 
+    <Route path="*" element={ <Login/>}/> 
     </Routes>
   </BrowserRouter>
   </Global.Provider>

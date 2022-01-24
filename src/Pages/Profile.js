@@ -21,7 +21,7 @@ const Profile = () => {
 
         if(img){
             const uploadimg = async ()=>{
-                const imgRef = ref(storage,`avatar/${new Date().getTime}- ${img.name}`);
+                const imgRef = ref(storage,`avatar/${new Date().getTime} - ${img.name}`);
                 try {
                     
                     const snap = await uploadBytes(imgRef,img);

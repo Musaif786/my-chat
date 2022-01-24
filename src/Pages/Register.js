@@ -65,7 +65,7 @@ function Register() {
         <h3>Create Account</h3>
         <form
           onSubmit={submitHandle}
-          style={{ maxWidth: "400px", maxHeight: "500px" }}
+          style={{ maxWidth: "300px", maxHeight: "800px" }}
         >
           <div>
             <label htmlFor="name">Name</label>
