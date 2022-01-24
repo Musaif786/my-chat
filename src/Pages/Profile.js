@@ -3,14 +3,20 @@ import { toast } from "react-toastify";
 import Camera from "../svg/Camera";
 import "../PagesCss/Profile.css";
 import { storage, db, auth } from "../firebase";
-import { ref, getDownloadURL,uploadBytes } from "firebase/storage";
+import { ref, getDownloadURL,uploadBytes, deleteObject } from "firebase/storage";
 import {doc,updateDoc, getDoc} from "firebase/firestore";
+import Delete from "../svg/Delete";
+import { async } from "@firebase/util";
+import {useNavigate} from "react-router-dom";
+
 
 const Profile = () => {
     const [ img, setImg] = useState("");
     const [user , setUser] = useState();
+
+    const navigate = useNavigate();
     
-        const fakeimg = "https://source.unsplash.com/200x200/?anima";
+        const fakeimg = "https://source.unsplash.com/200x200/?science/technology";
     useEffect(()=>{
   
         getDoc(doc(db, "users", auth.currentUser.uid)).then( docSnap =>{
@@ -23,6 +29,9 @@ const Profile = () => {
             const uploadimg = async ()=>{
                 const imgRef = ref(storage,`avatar/${new Date().getTime} - ${img.name}`);
                 try {
+                  if(user.avatarPath){
+                    await deleteObject(ref(storage, user.avatarPath));
+                  }
                     
                     const snap = await uploadBytes(imgRef,img);
                 const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
@@ -43,7 +52,23 @@ const Profile = () => {
             uploadimg();
         }
 
-    },[img])
+    },[img]);
+
+    const deleteimg = async ()=>{
+      try{
+       const confirm = window.confirm("want to delete dp ?")
+       if(confirm){
+         await deleteObject(ref(storage, user.avatarPath))
+         await updateDoc(doc(db, "users", auth.currentUser.uid),{
+           avatar: "",
+           avatarPath:"",
+         });
+         navigate("/")
+       }
+      }catch(err){
+        toast.error("Error : "+err.message);
+      }
+    }
   return user ? (
     <>
       <div>
@@ -59,6 +84,7 @@ const Profile = () => {
                   <label htmlFor="photo">
                       <Camera/>
                   </label>
+                  {user.avatar ? < Delete   deleteimg={deleteimg} /> :(<><small className="fs-6">update</small></>)}
                   <input type="file" accept="image" style={{display:"none"}} id="photo" onChange={(e)=>{setImg(e.target.files[0])}} />
               </div> </div>
             </div>

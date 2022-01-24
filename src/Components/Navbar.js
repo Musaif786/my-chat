@@ -37,8 +37,10 @@ function Navbar() {
  {/* if not work use this auth.currentUser */}
       {user ? (<>
      <li>
-
+     
      <Link to="/profile">Profile</Link>
+     <Link to="/messaging">Chatbox</Link>
+     
        <button onClick={logout} className='btn btn-danger btn-sm mx-3'>logout</button>
      </li>
      

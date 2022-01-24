@@ -105,7 +105,7 @@ function Register() {
             <button className="submit btn btn-primary" disabled={loading}>{loading ? "Creating ac...":"Signup"}</button>
 
             <div>
-              <button onClick={signinwithgoogle}  className=" btn btn-success">Sign-up with Google</button>
+              <button onClick={signinwithgoogle}  className=" btn btn-success disabled d-none">Sign-up with Google</button>
               <p>Alread have an account ? <Link to="/login">Login</Link></p>
             </div>
           </div>

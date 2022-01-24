@@ -20,6 +20,7 @@ import Navbar from "./Components/Navbar";
 import {onAuthStateChanged} from "firebase/auth";
 import { auth} from "./firebase"
 import Loading from "./Components/Loading";
+import Messaging from "./Pages/Messaging";
 
 
 export const Global = createContext();
@@ -71,6 +72,7 @@ function App() {
 { user && (
   <>
   <Route path="/" element={<Home/>}/>   
+  <Route path="/messaging" element={<Messaging/>}/>
     <Route path="/profile" element={<Profile/>}/>
     </>
 )}
