@@ -12,26 +12,28 @@ function Home() {
   const [ img, setImg] = useState("");
   const fakeimg = "https://source.unsplash.com/400x300/?cartoon/doremon";
   
-  let num = 0;
-const updates = ()=>{
-   let hours = new Date().getHours();
-  
-  if(num<12){
-    setDates("Good morning");
-  } else if(num >=12 && num< 16){
-    setDates("Good AfterNoon")
-  
-} else if(num >=16 && num< 18){
-  setDates("Good Evening")
+ 
+
+
+     
+const updates =  ()=>{
+  let hours = new Date().getHours();
+ 
+ if(hours <= 12){
+   setDates("Good morning");
+ } else if(hours > 12 && hours < 17){
+   setDates("Good AfterNoon")
+ 
+} else if(hours > 17 && hours< 20){
+ setDates("Good Evening")
 }
-  else{
-    setDates("Good Night");
-  }
+ else{
+   setDates("Good Night");
+ }
 
 }
 
 
-  setInterval(updates,5000);
   useEffect(()=>{
     
     
@@ -64,6 +66,9 @@ const updates = ()=>{
       };
       uploadimg();
   }
+
+
+ return ()=>{ updates()}
 
  
   
