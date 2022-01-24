@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {db,auth} from "../firebase";
-import { collection, query, where, onSnapshot, doc,getDoc, getDocs } from "firebase/firestore";
+import { collection, query, where, doc,getDoc, getDocs, onSnapshot, limit, orderBy } from "firebase/firestore";
 import User from '../Components/User';
 import "../PagesCss/Messaging.css";
 import { async } from '@firebase/util';
@@ -10,6 +10,7 @@ function Messaging() {
 
 
     const [users, setUsers] = useState({});
+    const [ loading , setLoading] = useState(true);
 
     const defaulsImg = "https://source.unsplash.com/50x50/?nature,water";
 
@@ -19,7 +20,7 @@ function Messaging() {
         const userRef = collection(db, "users");
 
         //creating query object
-        const q = query(userRef, where("uid","in",[auth.currentUser.uid]));
+        const q = query(userRef, limit(10), where("uid","not-in",[auth.currentUser.uid]));
 
         //execute query
         // const unsub = await onSnapshot(q, (querySnapshot) =>{
@@ -28,35 +29,40 @@ function Messaging() {
         //      users.push(doc.data())
         //     });
         // getDocs
-        const unsub = await getDocs(q);
-        var users = [];
-        unsub.forEach((doc) => {
-    users.push(doc.data())
-            setUsers(users);
-        });
+        
+        const unsub =  onSnapshot(q, (querySnapshot) =>{
+                 let users = [];
+                 querySnapshot.forEach((doc) =>{
+                  users.push(doc.data())
+                  setUsers(users);
+                 });
+                //  console.log(users.name)
+        } );
+        
         return ()=>{ unsub(); }
-
-
     },[]);
     const selectuser = (users)=>{
         console.log(users)
     
     }
+
+
+    
     
   return <>
     <div>
         <div className='message-container'>
          <div className='user-container'>
-        helllooo im uers
+     testing
         {/* {users[0].name} */}
         {
-            Object.keys(users).map((x) =>{
-               return ( <div> 
+           Object.keys(users).map((x) =>{
+               return ( <div key={x.uid}> 
                
                {/* users left side */}
-<div onClick={selectuser(x)}className='user-wrapper'>
+<div onClick={ selectuser} className='user-wrapper'>
 
-<div className="user-info">
+<div className="user-info" >
   <div className="user-details">
     <img src={users[x].avatar  || defaulsImg} alt=""className='user-avatar' />
     <h2>user name: {users[x].name}</h2>
@@ -72,6 +78,18 @@ function Messaging() {
             </div> )
             })
         }
+
+
+       {
+          loading ==false && (users.map((e)=>(
+               <>
+                   <h1> {e.name}</h1>
+               </>
+           )))
+       }
+
+       
+
          </div>
         </div>
     </div>

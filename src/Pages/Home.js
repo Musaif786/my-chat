@@ -19,7 +19,7 @@ function Home() {
 const updates =  ()=>{
   let hours = new Date().getHours();
  
- if(hours <= 12){
+ if(hours < 12){
    setDates("Good morning");
  } else if(hours > 12 && hours < 17){
    setDates("Good AfterNoon")
