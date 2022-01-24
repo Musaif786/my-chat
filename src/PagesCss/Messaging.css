@@ -39,3 +39,26 @@
     font-size: 18px;
     padding:5px 8px;
 }
+
+.user-wrapper{
+    margin-bottom: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+.user-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-status{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+}
+.online{
+    background-color: green;
+}
+.offline{
+    background-color: red;
+}

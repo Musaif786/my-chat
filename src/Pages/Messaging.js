@@ -19,7 +19,7 @@ function Messaging() {
         const userRef = collection(db, "users");
 
         //creating query object
-        const q = query(userRef, where("uid", "not-in",[auth.currentUser.uid]));
+        const q = query(userRef, where("uid","in",[auth.currentUser.uid]));
 
         //execute query
         // const unsub = await onSnapshot(q, (querySnapshot) =>{
@@ -28,8 +28,8 @@ function Messaging() {
         //      users.push(doc.data())
         //     });
         // getDocs
-        const unsub = await onSnapshot(q);
-        let users = [];
+        const unsub = await getDocs(q);
+        var users = [];
         unsub.forEach((doc) => {
     users.push(doc.data())
             setUsers(users);
@@ -38,7 +38,10 @@ function Messaging() {
 
 
     },[]);
-    console.log(users)
+    const selectuser = (users)=>{
+        console.log(users)
+    
+    }
     
   return <>
     <div>
@@ -51,12 +54,14 @@ function Messaging() {
                return ( <div> 
                
                {/* users left side */}
-<div className='user-wrapper'>
+<div onClick={selectuser(x)}className='user-wrapper'>
 
 <div className="user-info">
   <div className="user-details">
     <img src={users[x].avatar  || defaulsImg} alt=""className='user-avatar' />
     <h2>user name: {users[x].name}</h2>
+    <div className={`user-status ${users[x].isOnline ? "online" : "offline"}`}>
+    </div>
     
   
   </div>
