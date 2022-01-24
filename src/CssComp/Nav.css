@@ -1,0 +1,22 @@
+nav{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav ul{
+    display: flex;
+}
+nav ul li{
+    list-style: none;
+    margin: auto 0px;
+}
+nav a{
+ text-decoration: none;
+ align-items: center;
+ margin: 2px 4px;
+}
+nav button{
+    margin: 5px 5px;
+}
+
