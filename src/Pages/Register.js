@@ -28,7 +28,7 @@ function Register() {
   const submitHandle = async (e) => {
     e.preventDefault();
     setData({ ...data, error: null, loading: true });
-    if (name || email || pass) {
+    if (!name || !email || !pass) {
       // toast.error("Plz fill each input field");
       setData({ ...data, error: "all field are required" });
     }
@@ -109,7 +109,7 @@ function Register() {
             <button className="submit btn btn-primary" disabled={loading}>{loading ? "Creating ac...":"Signup"}</button>
 
             <div>
-              <button onClick={signinwithgoogle}  className=" btn btn-success ">Sign-up with Google</button>
+              <button onClick={signinwithgoogle}  className=" btn btn-success " disabled={loading}>{loading ? "Creating ac...":"Sign-up with Gmail"}</button>
               <p>Alread have an account ? <Link to="/login">Login</Link></p>
             </div>
           </div>
