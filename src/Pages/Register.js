@@ -58,7 +58,7 @@ function Register() {
  //    signInWithRedirect(auth, provider)
 
   if(signin){
-    navigator("/")
+    navigator("/messaging")
   }else{
     navigator("/login")
   }
