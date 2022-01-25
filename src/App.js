@@ -22,6 +22,7 @@ import { auth} from "./firebase"
 import Loading from "./Components/Loading";
 import Messaging from "./Pages/Messaging";
 import Box from "./Pages/Box";
+import Reset from "./Pages/Reset";
 
 
 export const Global = createContext();
@@ -66,6 +67,7 @@ function App() {
     {!user && ( <>
       <Route path="/register" element={<Register/>}/>
     <Route path="/login" element={<Login/>}/>
+    <Route path="/reset" element={<Reset/>}/>
 
    
     </>
@@ -76,6 +78,8 @@ function App() {
   <Route path="/messaging" element={<Messaging/>}/>
     <Route path="/profile" element={<Profile/>}/>
     <Route path="/box" element={<Box/>}/>
+    
+
     </>
 )}
     <Route path="*" element={ <Login/>}/> 

@@ -1,15 +1,18 @@
 nav{
-    border: 1px solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 10px; 
+width: 100%;
+border: 1px solid rgb(177, 177, 177);
 }
 nav ul{
     display: flex;
 }
 nav ul li{
     list-style: none;
-    margin: auto 0px;
+    margin: auto 2px;
+
 }
 nav a{
  text-decoration: none;
@@ -20,3 +23,22 @@ nav button{
     margin: 5px 5px;
 }
 
+@media only screen and (max-width: 700px) {
+
+
+    nav{
+    
+        align-items: center;
+        border-radius: 10px;
+       
+        width: 100%;
+        border: 1px solid rgb(177, 177, 177);
+        
+    }
+    nav ul{
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 16px;
+        margin: 2px 2px;
+    }
+}

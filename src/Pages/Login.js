@@ -1,7 +1,7 @@
     import React, { useState } from "react";
 import "../PagesCss/Register.css";
 //firebase
-import { signInWithEmailAndPassword  } from "firebase/auth";
+import { signInWithEmailAndPassword , getAuth, sendPasswordResetEmail   } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { updateDoc, doc, } from "firebase/firestore";
 
@@ -51,6 +51,7 @@ function Login() {
   };
 
   
+  
   return (
     <>
       <section id="register" className="container mt-5 ">
@@ -88,7 +89,13 @@ function Login() {
           </div>
           
         </form>
+
         <div>
+        <div>
+         <Link to="/reset">
+           Forgot password ? 
+         </Link>
+        </div>
             
               <p className="mt-2">Don't have an account ? <Link to="/register">Sign-up</Link></p>
             </div>

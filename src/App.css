@@ -10,7 +10,9 @@
 @media (prefers-reduced-motion: no-preference) {
   *{
    box-sizing: border-box;
+  
   }
+ 
 }
 
 .App-header {

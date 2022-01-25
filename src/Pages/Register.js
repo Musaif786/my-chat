@@ -60,7 +60,7 @@ function Register() {
   if(signin){
     navigator("/messaging")
   }else{
-    navigator("/login")
+    navigator("/register")
   }
 }
   return (
