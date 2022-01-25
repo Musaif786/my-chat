@@ -10,8 +10,8 @@ import { toast } from 'react-toastify';
 
 function Messaging() {
 
-    const user = useContext(Global);
-console.log(user);
+    const globaluser = useContext(Global);
+
 
     const [users, setUsers] = useState([]);
     const [chat, setChat] = useState("");
@@ -52,12 +52,15 @@ console.log(user);
 
 
     
-    const selectuser = (users)=>{
-        console.log(users);
+    const selectuser = (user)=>{
+        console.log(user.value);
         setChat(users);
     
     }
 
+    const handleSubmit = async (e)=>{
+      e.preventDefault()
+  }
 
     
     
@@ -69,19 +72,19 @@ console.log(user);
         {/* not working */}
         {/* {users[0].name} */}
         <small>
-        {user.name}
+        {globaluser.name}
           {auth.currentUser.email}
         </small>
 
         
  {
-   user ? ( Object.keys(users).map(function(x){
-        return ( <div key={x.uid} onClick={selectuser} > 
+  globaluser ? ( Object.keys(users).map(function(x){
+        return ( <div key={x.uid} onClick={selectuser } > 
         {/*  working in console 
         {console.log("allusers data here : "+ users[x].name)} */}
        <p>{users[x].name} </p>
         {/* users left side */}
- <div  className='user-wrapper'>
+ <div  className='user-wrapper' onClick={()=>{selectuser(users[x].name)}}>
 
  <div className="user-info" >
  <div className="user-details">
@@ -125,8 +128,8 @@ console.log(user);
          <div className='message-container'>
 {
   chat ? ( <> <div>
-    <Chat/>
-    <p className='p-5'>selected user now chat</p>
+    <Chat handleSubmit={handleSubmit}/>
+    <p className='p-5'>selected user to chat</p>
   </div>
   </>): "Select user to start conversation"
 }

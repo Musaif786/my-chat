@@ -6,8 +6,9 @@ import React from 'react';
 
 function User({users}) {
   return (<>
-<h1>{users.name}</h1>
-{console.log("heloo im new here"+ users.email)}
+
+<h1>hello</h1>
+
   </>);
 }
 

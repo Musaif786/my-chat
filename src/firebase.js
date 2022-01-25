@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 
+//updated initia.. with above firebase
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";

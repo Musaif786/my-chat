@@ -2,11 +2,9 @@ import { async } from '@firebase/util';
 import React from 'react';
 import Delete from '../svg/Delete';
 
-const Chat =()=>{
+const Chat =({handleSubmit})=>{
 
-    const handleSubmit = async (e)=>{
-        e.preventDefault()
-    }
+   
     return(<>
     <div style={{minWidth:"100%",height:"auto"}} className='message-form container'>
         

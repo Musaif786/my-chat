@@ -28,7 +28,7 @@ function Register() {
   const submitHandle = async (e) => {
     e.preventDefault();
     setData({ ...data, error: null, loading: true });
-    if (!name || !email || !pass) {
+    if (name || email || pass) {
       // toast.error("Plz fill each input field");
       setData({ ...data, error: "all field are required" });
     }
@@ -44,7 +44,6 @@ function Register() {
         email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
-        test:"testing",
       });
       setData({ name: "", email: "", pass: "", error: null, loading: false });
       // old method and above is new method firebase.firestore.collection("users").doc(id).set({})
@@ -55,9 +54,14 @@ function Register() {
   };
 
   const signinwithgoogle = ()=>{
-    signInWithPopup(auth, provider)
+ const signin =   signInWithPopup(auth, provider)
  //    signInWithRedirect(auth, provider)
 
+  if(signin){
+    navigator("/")
+  }else{
+    navigator("/login")
+  }
 }
   return (
     <>
@@ -73,7 +77,7 @@ function Register() {
               type="text"
               name="name"
               id="name"
-              placeholder="name here"
+              placeholder="name "
               value={name}
               onChange={handleChange}
             />
@@ -84,7 +88,7 @@ function Register() {
               type="text"
               name="email"
               id="email"
-              placeholder="email here"
+              placeholder="email "
               value={email}
               onChange={handleChange}
             />
@@ -95,7 +99,7 @@ function Register() {
               type="password"
               name="pass"
               id="pass"
-              placeholder="pass here"
+              placeholder="password"
               value={pass}
               onChange={handleChange}
             />
@@ -105,7 +109,7 @@ function Register() {
             <button className="submit btn btn-primary" disabled={loading}>{loading ? "Creating ac...":"Signup"}</button>
 
             <div>
-              <button onClick={signinwithgoogle}  className=" btn btn-success disabled d-none">Sign-up with Google</button>
+              <button onClick={signinwithgoogle}  className=" btn btn-success ">Sign-up with Google</button>
               <p>Alread have an account ? <Link to="/login">Login</Link></p>
             </div>
           </div>

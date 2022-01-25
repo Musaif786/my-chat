@@ -7,7 +7,7 @@ import { ref, getDownloadURL,uploadBytes, deleteObject } from "firebase/storage"
 import {doc,updateDoc, getDoc} from "firebase/firestore";
 import Delete from "../svg/Delete";
 import { async } from "@firebase/util";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 
 
 const Profile = () => {
@@ -69,7 +69,7 @@ const Profile = () => {
         toast.error("Error : "+err.message);
       }
     }
-  return user ? (
+  return user && auth.currentUser.uid ? (
     <>
       <div>
         <section>
@@ -98,7 +98,10 @@ const Profile = () => {
         </section>
       </div>
     </>
-  ) :null;
+  ) : (<><div> <p> To access this you need to Fill the Sign-up form</p>
+  <p>Click below button to Redirect to logout page</p>
+  <Link to="/box"><button className="btn-sm btn-dark">Click me</button></Link>
+  </div></>);
 };
 
 export default Profile;
