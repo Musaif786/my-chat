@@ -21,6 +21,7 @@ import {onAuthStateChanged} from "firebase/auth";
 import { auth} from "./firebase"
 import Loading from "./Components/Loading";
 import Messaging from "./Pages/Messaging";
+import Box from "./Pages/Box";
 
 
 export const Global = createContext();
@@ -51,7 +52,7 @@ function App() {
    }
 
   return (
-  <>
+  <> 
 
       <Global.Provider value={user}>
     <BrowserRouter>
@@ -74,6 +75,7 @@ function App() {
   <Route path="/" element={<Home/>}/>   
   <Route path="/messaging" element={<Messaging/>}/>
     <Route path="/profile" element={<Profile/>}/>
+    <Route path="/box" element={<Box/>}/>
     </>
 )}
     <Route path="*" element={ <Login/>}/> 

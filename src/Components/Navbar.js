@@ -38,8 +38,9 @@ function Navbar() {
       {user ? (<>
      <li>
      
-     <Link to="/profile">Profile</Link>
+     <Link to="/box">Box</Link>
      <Link to="/messaging">Chatbox</Link>
+     <Link to="/profile">Profile</Link>
      
        <button onClick={logout} className='btn btn-danger btn-sm mx-3'>logout</button>
      </li>

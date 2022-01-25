@@ -62,3 +62,26 @@
 .offline{
     background-color: red;
 }
+
+.message-container{
+    position: relative;
+    width: 100%;
+}
+.message-form{
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+border: 1px solid black;
+}
+#form{
+    position: relative;
+    left: 0px;
+    display: flex;
+    justify-content: space-between;
+  
+    
+    
+}
