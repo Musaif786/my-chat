@@ -25,7 +25,7 @@ console.log(user);
         // const userRef = collection(db, "users");
 
         //creating query object
-        const q = query(collection(db, "users"), where("uid","in",[auth.currentUser.uid]));
+        const q = query(collection(db, "users"), where("uid","not-in",[auth.currentUser.uid]));
 
         //execute query
         // const unsub = await onSnapshot(q, (querySnapshot) =>{
@@ -38,10 +38,10 @@ console.log(user);
         const unsub =  onSnapshot(q,(querySnapshot)=>{
                  let users = [];
                  querySnapshot.forEach((doc) =>{
-                  users.push(doc.data(),doc.id)
+                  users.push(doc.data())
                  setUsers(users);
                  });
-                //  console.log(users)
+                  console.log(users)
                 },(error)=>{
                   console.log(error.message)
                 });
